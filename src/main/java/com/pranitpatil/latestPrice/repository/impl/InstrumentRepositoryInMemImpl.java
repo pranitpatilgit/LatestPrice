@@ -5,6 +5,7 @@ import com.pranitpatil.latestPrice.exception.NotFoundException;
 import com.pranitpatil.latestPrice.repository.InstrumentRepository;
 
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.BiFunction;
 
 public class InstrumentRepositoryInMemImpl implements InstrumentRepository {
 
@@ -37,6 +38,14 @@ public class InstrumentRepositoryInMemImpl implements InstrumentRepository {
     @Override
     public Instrument saveInstrument(Instrument instrument) {
         instruments.put(instrument.getId(), instrument);
+
+        return getInstrumentById(instrument.getId());
+    }
+
+    @Override
+    public Instrument saveIfLatest(Instrument instrument) {
+        instruments.merge(instrument.getId(), instrument,
+                (oldIns, newIns) -> newIns.getAsOf().isAfter(oldIns.getAsOf()) ? newIns : oldIns);
 
         return getInstrumentById(instrument.getId());
     }

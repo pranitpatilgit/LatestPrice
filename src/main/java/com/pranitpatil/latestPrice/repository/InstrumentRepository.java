@@ -18,4 +18,12 @@ public interface InstrumentRepository {
      * @return Instrument
      */
     Instrument saveInstrument(Instrument instrument);
+
+    /**
+     * Saves the instrument if the provided instrument is latest instrument.
+     * It uses instrument's asOf field for comparison.
+     * @param instrument
+     * @return
+     */
+    Instrument saveIfLatest(Instrument instrument);
 }
