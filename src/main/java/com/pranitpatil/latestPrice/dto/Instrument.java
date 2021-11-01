@@ -1,6 +1,7 @@
 package com.pranitpatil.latestPrice.dto;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Instrument implements Cloneable{
 
@@ -41,5 +42,18 @@ public class Instrument implements Cloneable{
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Instrument that = (Instrument) o;
+        return id == that.id && Objects.equals(asOf, that.asOf) && Objects.equals(payload, that.payload);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, asOf, payload);
     }
 }

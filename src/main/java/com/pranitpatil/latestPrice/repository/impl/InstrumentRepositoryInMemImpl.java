@@ -17,10 +17,10 @@ public class InstrumentRepositoryInMemImpl implements InstrumentRepository {
         return instance;
     }
 
-    private ConcurrentHashMap<Integer, Instrument> instruments = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<Long, Instrument> instruments = new ConcurrentHashMap<>();
 
     @Override
-    public Instrument getInstrumentById(int id) {
+    public Instrument getInstrumentById(long id) {
         Instrument instrument = instruments.get(id);
 
         if(instrument == null){
@@ -36,6 +36,8 @@ public class InstrumentRepositoryInMemImpl implements InstrumentRepository {
 
     @Override
     public Instrument saveInstrument(Instrument instrument) {
-        return null;
+        instruments.put(instrument.getId(), instrument);
+
+        return getInstrumentById(instrument.getId());
     }
 }
