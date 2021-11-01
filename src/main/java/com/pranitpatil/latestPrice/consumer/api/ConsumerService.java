@@ -17,6 +17,10 @@ public class ConsumerService {
 
     private static final ConsumerService instance = new ConsumerService();
 
+    public static ConsumerService getInstance() {
+        return instance;
+    }
+
     public Instrument getLatestInstrumentDetails(long id){
         return instrumentRepository.getInstrumentById(id);
     }

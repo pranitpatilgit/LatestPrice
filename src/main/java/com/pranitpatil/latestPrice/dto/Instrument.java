@@ -56,4 +56,13 @@ public class Instrument implements Cloneable{
     public int hashCode() {
         return Objects.hash(id, asOf, payload);
     }
+
+    @Override
+    public String toString() {
+        return "Instrument{" +
+                "id=" + id +
+                ", asOf=" + asOf +
+                ", payload=" + payload +
+                '}';
+    }
 }

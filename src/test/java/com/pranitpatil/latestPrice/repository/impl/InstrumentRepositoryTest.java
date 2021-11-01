@@ -1,4 +1,4 @@
-package impl;
+package com.pranitpatil.latestPrice.repository.impl;
 
 import com.pranitpatil.latestPrice.dto.Instrument;
 import com.pranitpatil.latestPrice.exception.NotFoundException;
